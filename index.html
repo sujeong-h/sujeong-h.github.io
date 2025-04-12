@@ -1,37 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sujeong Hong - Academic Homepage</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        nav {
+            background-color: #343a40;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        nav li {
+            margin: 0 1rem;
+        }
+        nav a {
+            display: block;
+            padding: 1rem;
+            color: #f8f9fa;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        nav a:hover {
+            background-color: #495057;
+        }
+        .container {
+            max-width: 768px;
+            margin: auto;
+            padding: 2rem 1rem;
+        }
+        h1, h2 {
+            font-weight: 700;
+        }
+        footer {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #868e96;
+            padding: 2rem 0;
+        }
+        section ul {
+            padding-left: 1.2rem;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <img src="profile.jpg" alt="Profile Photo" class="profile-photo">
-            <h1>Sujeong Hong</h1>
-            <p>Researcher | Educator | Academic Enthusiast</p>
-        </div>
+        <img src="profile.jpg" alt="Profile Photo" class="profile-photo" />
+        <h1>Sujeong Hong</h1>
+        <p>Researcher | Educator | Academic Enthusiast</p>
     </header>
 
     <nav>
-        <div class="container">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
 
     <main>
         <section id="about" class="container">
             <h2>About Me</h2>
-            <p>Hello! I am Sujeong Hong, currently working as an assistant professor at Mokwon university. My research focuses on [Your Research Interests].</p>
+            <p>Hello! I am Sujeong Hong, currently working as an assistant professor at Mokwon University. My research focuses on [Your Research Interests].</p>
         </section>
 
         <section id="research" class="container">
@@ -73,9 +132,7 @@
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Sujeong Hong. All rights reserved.</p>
-        </div>
+        <p>&copy; 2025 Sujeong Hong. All rights reserved.</p>
     </footer>
 </body>
 </html>
