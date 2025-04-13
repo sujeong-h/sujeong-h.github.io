@@ -4,22 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sujeong Hong - Academic Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spoqa+Han+Sans+Neo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Helvetica', sans-serif;
+            font-family: 'Spoqa Han Sans Neo', 'sans-serif';
             margin: 0;
             background-color: #ffffff;
             color: #000000;
+            font-size: 16px;
+            line-height: 1.6;
         }
         header {
             background-color: #000000;
             color: #ffffff;
-            padding: 2rem 1rem;
+            padding: 4rem 1rem 2rem 1rem;
             text-align: center;
         }
         .profile-photo {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 1rem;
@@ -44,19 +49,28 @@
             padding: 1rem;
             color: #000000;
             text-decoration: none;
-            font-weight: 500;
-            border-bottom: 2px solid transparent;
+            font-weight: 700;
         }
         nav a:hover {
-            border-bottom: 2px solid #000000;
+            text-decoration: underline;
         }
         .container {
             max-width: 768px;
             margin: auto;
-            padding: 2rem 1rem;
+            padding: 3rem 1.5rem;
         }
-        h1, h2 {
+        h1 {
+            font-size: 2rem;
             font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        p, li {
+            font-weight: 400;
         }
         footer {
             text-align: center;
@@ -74,7 +88,7 @@
     <header>
         <img src="profile.jpg" alt="Profile Photo" class="profile-photo" />
         <h1>Sujeong Hong</h1>
-        <p>Researcher | Educator </p>
+        <p>Researcher | Educator | Academic Enthusiast</p>
     </header>
 
     <nav>
@@ -91,7 +105,7 @@
     <main>
         <section id="about" class="container">
             <h2>About Me</h2>
-            <p>Hello! I am Sujeong Hong, currently working as an assistant professor at Mokwon University. My research focuses on experiential purchases.</p>
+            <p>Hello! I am Sujeong Hong, currently working as an assistant professor at Mokwon University. My research focuses on [Your Research Interests].</p>
         </section>
 
         <section id="research" class="container">
@@ -110,8 +124,8 @@
         <section id="teaching" class="container">
             <h2>Teaching</h2>
             <ul>
-                <li>Course 1: Bigdata Marketing Analysis </li>
-                <li>Course 2: Customer Relationship Management</li>
+                <li>Course 1: [Course Description]</li>
+                <li>Course 2: [Course Description]</li>
             </ul>
         </section>
 
@@ -119,7 +133,7 @@
             <h2>Blog</h2>
             <p>Welcome to my blog! Here, I share insights, updates, and articles about my research and academic journey.</p>
             <ul>
-                <li><a href="blog-post-1.html" target="_blank">Blog Post 1: [First semester of Mokwon]</a> - [Date]</li>
+                <li><a href="blog-post-1.html" target="_blank">Blog Post 1: [Blog Title 1]</a> - [Date]</li>
                 <li><a href="blog-post-2.html" target="_blank">Blog Post 2: [Blog Title 2]</a> - [Date]</li>
             </ul>
         </section>
@@ -137,4 +151,3 @@
     </footer>
 </body>
 </html>
-
