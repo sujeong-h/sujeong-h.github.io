@@ -6,148 +6,207 @@
     <title>홍수정 | Sujeong Hong</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <style>
-        /* 미니멀 스타일 설정 */
+        /* Minimal Design System */
         :root {
             --bg-color: #ffffff;
-            --text-color: #222222;
+            --text-primary: #111111;
+            --text-secondary: #555555;
             --line-color: #000000;
         }
         body {
-            font-family: 'Pretendard', sans-serif;
+            font-family: 'Pretendard', -apple-system, sans-serif;
             line-height: 1.6;
             margin: 0;
-            color: var(--text-color);
+            color: var(--text-primary);
             background-color: var(--bg-color);
         }
         a { text-decoration: none; color: inherit; }
-        ul { list-style: none; padding: 0; margin: 0; }
         
-        /* 레이아웃 */
+        /* Layout */
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 24px;
         }
-        section {
-            margin-bottom: 80px;
-        }
+        section { margin-bottom: 80px; }
 
-        /* 헤더 */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--line-color);
-            margin-bottom: 60px;
-        }
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
-        nav a { margin-left: 25px; font-size: 0.95rem; font-weight: 500; }
-        nav a:hover { text-decoration: underline; }
-
-        /* 타이포그래피 및 요소 */
-        h1 { font-size: 2.8rem; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -1px; }
-        h2 {
-            font-size: 1.4rem;
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 25px;
-            display: inline-block;
+            letter-spacing: -0.02em;
+            margin: 0 0 10px 0;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 30px;
+            display: block;
+        }
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             border-bottom: 2px solid var(--line-color);
-            padding-bottom: 5px;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
-        h3 { font-size: 1.1rem; font-weight: 600; margin: 20px 0 10px 0; }
-        p { color: #444; margin-bottom: 15px; }
         
-        .lead { font-size: 1.2rem; font-weight: 500; margin-bottom: 30px; color: #000; }
-        .sub-text { color: #666; font-size: 0.95rem; }
+        /* Lists */
+        .minimal-list { list-style: none; padding: 0; }
+        .minimal-list li { margin-bottom: 25px; }
+        .minimal-list strong {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .minimal-list .info { font-size: 0.95rem; color: #333; }
+        .minimal-list .meta {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 4px;
+            display: block;
+        }
 
-        /* 심플 리스트 스타일 */
-        .simple-list li {
-            margin-bottom: 15px;
-            padding-left: 15px;
-            border-left: 2px solid var(--line-color);
+        /* Publication List Specifics */
+        .pub-item { margin-bottom: 20px; }
+        .pub-title { font-weight: 600; }
+        .pub-journal { font-style: italic; color: var(--text-secondary); }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            margin-bottom: 60px;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
-        .simple-list strong { display: block; font-weight: 600; margin-bottom: 5px; }
-        
-        /* Contact 정보 */
-        .contact-info li { margin-bottom: 10px; }
-        .contact-info strong { margin-right: 10px; }
+        nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
         /* Footer */
         footer {
-            text-align: center;
-            padding: 30px 0;
             border-top: 1px solid #eee;
-            font-size: 0.85rem;
-            color: #888;
+            padding-top: 30px;
+            font-size: 0.8rem;
+            color: #999;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <a href="#" class="logo">Sujeong Hong</a>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#research">Research</a>
-            <a href="#contact">Contact</a>
-        </nav>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <header id="about">
+        <h1>Sujeong Hong</h1>
+        <span class="subtitle">Assistant Professor, Mokwon University</span>
+        <p>
+            저는 행동 과학과 데이터 기반 방법론을 융합하여 마케팅 문제를 해결하는 연구자입니다. 
+            [cite_start]<strong>성균관대학교(Sungkyunkwan University)</strong>에서 경영학 박사 학위를 취득하였으며[cite: 34, 35], 
+            현재 <strong>경험적 소비(Experiential Purchase), 미니멀리즘(Minimalism), 친사회적 행동(Prosocial Behavior)</strong> 등을 주제로 
+            [cite_start]활발한 연구를 수행하고 있습니다[cite: 41, 42].
+        </p>
     </header>
 
-    <section id="about">
-        <h1>홍수정 (Sujeong Hong)</h1>
-        <p class="lead">Assistant Professor at Mokwon University</p>
-        <p>
-            행동 과학 이론과 데이터 기반 방법론을 연결하는 계산사회과학(Computational Social Science) 연구자입니다. 
-            성균관대학교에서 박사 학위를 받았으며, 현재 목원대학교에서 머신러닝과 텍스트 마이닝을 활용해 마케팅 인사이트를 도출하는 연구에 집중하고 있습니다.
-        </p>
-    </section>
-
-    <section id="research">
-        <h2>Focus Areas</h2>
-        <ul class="simple-list">
+    <section>
+        <h2>Education</h2>
+        <ul class="minimal-list">
             <li>
-                <strong>Marketing Analytics</strong>
-                Python/R을 활용한 데이터 분석 및 소비자 행동 예측 모델링
+                <strong>Ph.D. in Business Administration (Marketing)</strong>
+                <span class="info">Sungkyunkwan University, 2020</span>
+                [cite_start]<span class="meta">Dissertation: "The Effect of Uncertainty on Consumer Preference for Material and Experiential Purchases" [cite: 35, 38]</span>
             </li>
             <li>
-                <strong>Text Mining & NLP</strong>
-                비정형 텍스트 데이터(리뷰, UGC)에서의 주요 테마 및 감성 분석
-            </li>
-            <li>
-                <strong>Consumer Behavior</strong>
-                디지털 플랫폼 환경에서의 소비자 심리 및 행동 패턴 연구
+                <strong>B.A. in Business Administration & Social Welfare</strong>
+                [cite_start]<span class="info">Sungkyunkwan University, 2013 [cite: 36]</span>
             </li>
         </ul>
     </section>
 
+    <section id="publications">
+        <h2>Selected Publications</h2>
+        <div class="pub-item">
+            <div class="pub-title">"The Effect of Meritocratic Belief on Charitable Behavior"</div>
+            [cite_start]<div class="pub-journal">Journal of Consumer Studies, 34(6), 165-176 (2023) [cite: 45]</div>
+        </div>
+        <div class="pub-item">
+            <div class="pub-title">"Against the Public or the Critic? The Impacts of Counterculturalism on Consumer Preferences..."</div>
+            [cite_start]<div class="pub-journal">Journal of Consumption Culture, 26(4), 255-273 (With Kim, K.) (2023) [cite: 46]</div>
+        </div>
+        <div class="pub-item">
+            <div class="pub-title">"Spillover Effect of Leadership Ethics on CSR Initiatives"</div>
+            [cite_start]<div class="pub-journal">Journal of Consumption Culture, 26(4), 205-220 (With Kwon, M.) (2023) [cite: 47]</div>
+        </div>
+        <div class="pub-item">
+            <div class="pub-title">"The Effects of Minimalism Pursuit on Consumer Independence"</div>
+            [cite_start]<div class="pub-journal">Journal of Consumer Studies, 34(5), 67-85 (With Kwon, M.) (2023) [cite: 48]</div>
+        </div>
+        <div class="pub-item">
+            <div class="pub-title">"AI vs. Humans: How Implicit Self-Theory Shapes Consumer Evaluations on Financial Investment Advice"</div>
+            [cite_start]<div class="pub-journal">Journal of Consumer Studies, 34(5), 143-156 (With Jeon, E.) (2023) [cite: 49]</div>
+        </div>
+    </section>
+
     <section>
-        <h2>Selected Experience</h2>
-        <ul class="simple-list">
+        <h2>Selected Presentations</h2>
+        <ul class="minimal-list">
             <li>
-                <strong>Assistant Professor, Mokwon University</strong>
-                <span class="sub-text">Current</span>
+                <strong>AMA Winter Academic Conference (2024)</strong>
+                [cite_start]<span class="info">"Expectations of Making a Difference for Earth" (St. Pete Beach, FL) [cite: 61, 62]</span>
             </li>
             <li>
-                <strong>Postdoctoral Researcher, Sookmyung Women’s Univ.</strong>
-                <span class="sub-text">산업통상자원부 국책 과제(데이터 기반 전자 제조 전문 인력 양성) 수행</span>
+                <strong>AMA Summer Academic Conference (2023)</strong>
+                [cite_start]<span class="info">"A Hopeful Message Works for the Pessimist" (San Francisco, USA) [cite: 63, 64]</span>
+            </li>
+            <li>
+                <strong>Global Marketing Conference (2023)</strong>
+                [cite_start]<span class="info">"Effects of Residential Mobility on Trust in the Digital Consumption Contexts" (Seoul) [cite: 65, 66]</span>
+            </li>
+        </ul>
+    </section>
+
+    <section id="teaching">
+        <h2>Teaching</h2>
+        <ul class="minimal-list">
+            <li>
+                <strong>Marketing Analytics</strong>
+                [cite_start]<span class="info">Sookmyung Women's University (Spring 2024) [cite: 82]</span>
+            </li>
+            <li>
+                <strong>Marketing Strategy</strong>
+                [cite_start]<span class="info">Sungkyunkwan University (Fall 2023) [cite: 83]</span>
             </li>
         </ul>
     </section>
 
     <section id="contact">
         <h2>Contact</h2>
-        <ul class="contact-info">
-            <li><strong>Email:</strong> <a href="mailto:sujeongh@mokwon.ac.kr" style="text-decoration: underline;">sujeongh@mokwon.ac.kr</a></li>
-            <li><strong>Office:</strong> 목원대학교 (Mokwon University)</li>
+        <ul class="minimal-list">
+            <li>
+                <strong>Email</strong>
+                <a href="mailto:sujeongh@mokwon.ac.kr" style="border-bottom: 1px solid #000;">sujeongh@mokwon.ac.kr</a>
+            </li>
+            <li>
+                <strong>Office</strong>
+                <span class="info">Mokwon University</span>
+            </li>
         </ul>
     </section>
-</div>
 
-<footer>
-    © 2025 Sujeong Hong.
-</footer>
+    <footer>
+        &copy; 2025 Sujeong Hong. All rights reserved.
+    </footer>
+</div>
 
 </body>
 </html>
