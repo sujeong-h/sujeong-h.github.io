@@ -6,246 +6,148 @@
     <title>홍수정 | Sujeong Hong</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <style>
-        /* 기본 스타일 설정 */
+        /* 미니멀 스타일 설정 */
         :root {
-            --primary-color: #004080; /* 학구적인 딥 블루 */
-            --secondary-color: #f8f9fa;
-            --text-color: #333;
-            --accent-color: #0056b3;
+            --bg-color: #ffffff;
+            --text-color: #222222;
+            --line-color: #000000;
         }
         body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            line-height: 1.7;
+            font-family: 'Pretendard', sans-serif;
+            line-height: 1.6;
             margin: 0;
             color: var(--text-color);
+            background-color: var(--bg-color);
         }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; margin: 0; }
         
-        /* 헤더 및 네비게이션 */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #eee;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        nav {
-            max-width: 1100px;
+        /* 레이아웃 */
+        .container {
+            max-width: 800px;
             margin: 0 auto;
+            padding: 40px 20px;
+        }
+        section {
+            margin-bottom: 80px;
+        }
+
+        /* 헤더 */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--line-color);
+            margin-bottom: 60px;
         }
-        .logo { font-size: 1.3rem; font-weight: 700; color: var(--primary-color); }
-        .nav-links { display: flex; gap: 25px; }
-        .nav-links a { font-size: 0.95rem; font-weight: 500; color: #555; }
-        .nav-links a:hover { color: var(--accent-color); }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+        nav a { margin-left: 25px; font-size: 0.95rem; font-weight: 500; }
+        nav a:hover { text-decoration: underline; }
 
-        /* 섹션 공통 */
-        section {
-            padding: 100px 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        /* 타이포그래피 및 요소 */
+        h1 { font-size: 2.8rem; font-weight: 800; margin: 0 0 10px 0; letter-spacing: -1px; }
         h2 {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 40px;
+            font-size: 1.4rem;
             font-weight: 700;
-        }
-        h2::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--accent-color);
-            margin-top: 15px;
-        }
-
-        /* Home 섹션 */
-        #home {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding-left: max(2rem, calc((100% - 900px) / 2));
-            padding-top: 60px;
-        }
-        #home h1 { font-size: 3.5rem; margin: 0 0 10px 0; color: var(--primary-color); line-height: 1.2; }
-        #home h3 { font-size: 1.5rem; font-weight: 400; color: #555; margin-bottom: 20px; }
-        #home p { font-size: 1.1rem; color: #666; max-width: 600px; margin-bottom: 30px; }
-        .btn {
+            margin-bottom: 25px;
             display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 35px;
-            border-radius: 30px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,64,128,0.3);
+            border-bottom: 2px solid var(--line-color);
+            padding-bottom: 5px;
         }
-        .btn:hover { background: var(--accent-color); transform: translateY(-2px); }
+        h3 { font-size: 1.1rem; font-weight: 600; margin: 20px 0 10px 0; }
+        p { color: #444; margin-bottom: 15px; }
+        
+        .lead { font-size: 1.2rem; font-weight: 500; margin-bottom: 30px; color: #000; }
+        .sub-text { color: #666; font-size: 0.95rem; }
 
-        /* About 섹션 */
-        .about-content {
-            background: white;
+        /* 심플 리스트 스타일 */
+        .simple-list li {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid var(--line-color);
         }
-        .highlight { color: var(--accent-color); font-weight: 600; }
-
-        /* Research Interests 그리드 */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #eee;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .card h3 { margin-top: 0; color: var(--primary-color); font-size: 1.2rem; }
-
-        /* Projects/Experience 리스트 */
-        .timeline-item {
-            position: relative;
-            padding-left: 20px;
-            border-left: 2px solid #ddd;
-            margin-bottom: 30px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            background: var(--primary-color);
-            border-radius: 50%;
-        }
-        .timeline-item h4 { margin: 0 0 5px 0; font-size: 1.2rem; }
-        .timeline-item .role { font-weight: 600; color: #555; font-size: 0.95rem; }
-        .timeline-item .desc { margin-top: 10px; font-size: 0.95rem; color: #666; }
+        .simple-list strong { display: block; font-weight: 600; margin-bottom: 5px; }
+        
+        /* Contact 정보 */
+        .contact-info li { margin-bottom: 10px; }
+        .contact-info strong { margin-right: 10px; }
 
         /* Footer */
         footer {
-            background: #1a1a1a;
-            color: #aaa;
             text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9rem;
+            padding: 30px 0;
+            border-top: 1px solid #eee;
+            font-size: 0.85rem;
+            color: #888;
         }
     </style>
 </head>
 <body>
 
+<div class="container">
     <header>
+        <a href="#" class="logo">Sujeong Hong</a>
         <nav>
-            <a href="#home" class="logo">Sujeong Hong</a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#interests">Research Interests</a>
-                <a href="#projects">Experience & Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
+            <a href="#about">About</a>
+            <a href="#research">Research</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
-    <section id="home">
-        <h1>Sujeong Hong</h1>
-        <h3>Assistant Professor, Mokwon University</h3>
-        <p>
-            Bridging behavioral science with data-driven methods.<br>
-            Focusing on Computational Social Science & Marketing Analytics.
-        </p>
-        <a href="#contact" class="btn">Get in Touch</a>
-    </section>
-
     <section id="about">
-        <h2>About Me</h2>
+        <h1>홍수정 (Sujeong Hong)</h1>
+        <p class="lead">Assistant Professor at Mokwon University</p>
         <p>
-            저는 <strong>목원대학교(Mokwon University)</strong>의 조교수로서 계산사회과학(Computational Social Science) 연구에 전념하고 있습니다. 
-            <br><br>
-            <strong>성균관대학교(Sungkyunkwan University)</strong>에서 박사 학위를 취득하였으며, 
-            행동 과학 이론과 데이터 기반 방법론을 결합하는 것에 깊은 관심을 가지고 있습니다.
-            특히 머신러닝과 텍스트 마이닝 같은 <span class="highlight">컴퓨테이셔널 도구(Computational Tools)</span>를 활용하여 
-            소비자 행동의 숨겨진 패턴을 발견하고 마케팅 인사이트를 도출하는 연구를 수행하고 있습니다.
-        </p>
-        <br>
-        <p>
-            장기적으로는 행동 이론과 컴퓨터 공학적 방법론을 통합하여 공공 정책, 비즈니스 전략, 소비자 복지에 기여하는 것을 목표로 합니다.
+            행동 과학 이론과 데이터 기반 방법론을 연결하는 계산사회과학(Computational Social Science) 연구자입니다. 
+            성균관대학교에서 박사 학위를 받았으며, 현재 목원대학교에서 머신러닝과 텍스트 마이닝을 활용해 마케팅 인사이트를 도출하는 연구에 집중하고 있습니다.
         </p>
     </section>
 
-    <section id="interests">
-        <h2>Research Interests</h2>
-        <div class="grid-container">
-            <div class="card">
-                <h3>📊 Marketing Analytics</h3>
-                <p>Python과 R을 활용한 데이터 분석, 머신러닝(Supervised Learning)을 통한 소비자 행동 예측 및 시장 세분화(Clustering) 연구.</p>
-            </div>
-            <div class="card">
-                <h3>📝 Text Mining & NLP</h3>
-                <p>자연어 처리(NLP) 기술을 활용하여 온라인 리뷰 및 사용자 생성 콘텐츠(UGC)에서 주요 테마를 추출하고 분석.</p>
-            </div>
-            <div class="card">
-                <h3>🧠 Consumer Behavior</h3>
-                <p>경험적 소비 상황에서의 불확실성에 대한 심리적 효과 연구 및 디지털 플랫폼에서의 소비자 재방문 의도 모델링.</p>
-            </div>
-        </div>
+    <section id="research">
+        <h2>Focus Areas</h2>
+        <ul class="simple-list">
+            <li>
+                <strong>Marketing Analytics</strong>
+                Python/R을 활용한 데이터 분석 및 소비자 행동 예측 모델링
+            </li>
+            <li>
+                <strong>Text Mining & NLP</strong>
+                비정형 텍스트 데이터(리뷰, UGC)에서의 주요 테마 및 감성 분석
+            </li>
+            <li>
+                <strong>Consumer Behavior</strong>
+                디지털 플랫폼 환경에서의 소비자 심리 및 행동 패턴 연구
+            </li>
+        </ul>
     </section>
 
-    <section id="projects">
-        <h2>Selected Experience & Projects</h2>
-        
-        <div class="timeline-item">
-            <h4>Assistant Professor</h4>
-            <div class="role">Mokwon University (Current)</div>
-            <div class="desc">
-                계산사회과학 및 마케팅 분석 분야 연구 및 강의 수행.
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <h4>Postdoctoral Researcher</h4>
-            <div class="role">Sookmyung Women’s University</div>
-            <div class="desc">
-                <strong>"Data Analysis-based Electronic Manufacturing Specialist Training Project"</strong><br>
-                산업통상자원부 지원 국책 과제 주도. 통계 분석, 산업 데이터 모델링, 데이터 리터러시 교육 수행 및 산학 협력 추진.
-            </div>
-        </div>
-
-        <div class="timeline-item">
-            <h4>Current Research Projects</h4>
-            <div class="role">Ongoing</div>
-            <div class="desc">
-                - Python/R을 활용한 온라인 리뷰 데이터 분석 및 A/B 테스트 전략 수립<br>
-                - 디지털 플랫폼 내 소비자 재방문 의도(Revisit Intentions) 모델링<br>
-                - 인과 추론(Causal Inference) 기법을 대규모 마케팅 데이터에 적용
-            </div>
-        </div>
+    <section>
+        <h2>Selected Experience</h2>
+        <ul class="simple-list">
+            <li>
+                <strong>Assistant Professor, Mokwon University</strong>
+                <span class="sub-text">Current</span>
+            </li>
+            <li>
+                <strong>Postdoctoral Researcher, Sookmyung Women’s Univ.</strong>
+                <span class="sub-text">산업통상자원부 국책 과제(데이터 기반 전자 제조 전문 인력 양성) 수행</span>
+            </li>
+        </ul>
     </section>
 
     <section id="contact">
         <h2>Contact</h2>
-        <p>연구 협업 및 기타 문의는 아래 연락처를 이용해 주세요.</p>
-        <ul style="list-style: none; padding: 0; font-size: 1.1rem;">
-            <li>🏢 <strong>Affiliation:</strong> 목원대학교 (Mokwon University)</li>
-            <li>🎓 <strong>Ph.D. from:</strong> 성균관대학교 (Sungkyunkwan University)</li>
-            <li>📧 <strong>Email:</strong> <a href="mailto:sujeongh@mokwon.ac.kr" style="text-decoration: underline;">sujeongh@mokwon.ac.kr</a></li>
+        <ul class="contact-info">
+            <li><strong>Email:</strong> <a href="mailto:sujeongh@mokwon.ac.kr" style="text-decoration: underline;">sujeongh@mokwon.ac.kr</a></li>
+            <li><strong>Office:</strong> 목원대학교 (Mokwon University)</li>
         </ul>
     </section>
+</div>
 
-    <footer>
-        <p>&copy; 2025 Sujeong Hong. All rights reserved.</p>
-    </footer>
+<footer>
+    © 2025 Sujeong Hong.
+</footer>
 
 </body>
 </html>
