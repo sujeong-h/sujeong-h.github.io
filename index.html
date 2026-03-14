@@ -313,85 +313,6 @@
         .copy-btn:hover { color: var(--ink); border-color: var(--ink-mid); }
         .copy-btn.copied { color: var(--accent); border-color: var(--accent); }
 
-        /* ── Portfolio ── */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1px;
-            background: var(--line);
-            border: 1px solid var(--line);
-        }
-        .portfolio-card {
-            background: var(--paper);
-            transition: background 0.2s, opacity 0.5s, transform 0.5s;
-            opacity: 0;
-            transform: translateY(14px);
-        }
-        .portfolio-card:hover { background: #f0ece3; }
-        [data-theme="dark"] .portfolio-card:hover { background: #1a1710; }
-        .portfolio-card.vis { opacity: 1; transform: translateY(0); }
-
-        .card-thumb {
-            width: 100%;
-            aspect-ratio: 16/9;
-            overflow: hidden;
-            background: var(--line);
-        }
-        .card-thumb img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-            filter: grayscale(20%);
-            transition: filter 0.3s, transform 0.4s;
-        }
-        .portfolio-card:hover .card-thumb img { filter: grayscale(0%); transform: scale(1.03); }
-        .card-thumb-empty {
-            width: 100%; height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            color: var(--ink-faint);
-            text-transform: uppercase;
-        }
-        .card-body { padding: 24px 24px 28px; }
-        .card-tag {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-            font-weight: 300;
-            margin-bottom: 10px;
-        }
-        .card-title {
-            font-family: var(--serif);
-            font-size: 1.15rem;
-            font-weight: 400;
-            color: var(--ink);
-            line-height: 1.4;
-            margin-bottom: 10px;
-        }
-        .card-desc {
-            font-size: 0.88rem;
-            color: var(--ink-mid);
-            line-height: 1.6;
-            margin-bottom: 18px;
-        }
-        .card-link {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--ink-faint);
-            border-bottom: 1px solid var(--line);
-            padding-bottom: 2px;
-            transition: color 0.2s, border-color 0.2s;
-        }
-        .card-link:hover { color: var(--ink); border-color: var(--ink-mid); }
-
         /* ── Back to top ── */
         .back-top {
             position: fixed;
@@ -459,7 +380,6 @@
     <div class="nav-right">
         <ul class="nav-links">
             <li><a href="#publications">Research</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#teaching">Teaching</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -598,21 +518,9 @@
         </div>
     </section>
 
-    <section class="section" id="portfolio" data-observe>
-        <div class="section-header">
-            <span class="section-number">04 — Portfolio</span>
-            <h2 class="section-title">Projects</h2>
-        </div>
-        <div class="section-body">
-            <div class="portfolio-grid" id="portfolioGrid">
-                <!-- content.js 에서 자동 렌더링 -->
-            </div>
-        </div>
-    </section>
-
     <section class="section" id="teaching" data-observe>
         <div class="section-header">
-            <span class="section-number">05 — Teaching</span>
+            <span class="section-number">04 — Teaching</span>
             <h2 class="section-title">Courses Taught</h2>
         </div>
         <div class="section-body">
@@ -663,7 +571,7 @@
 
     <section class="section" id="contact" data-observe>
         <div class="section-header">
-            <span class="section-number">06 — Contact</span>
+            <span class="section-number">05 — Contact</span>
             <h2 class="section-title">Get in Touch</h2>
         </div>
         <div class="section-body">
@@ -696,41 +604,6 @@
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="content.js"></script>
 <script>
-    // ── Portfolio renderer (reads from content.js) ──
-    const grid = document.getElementById('portfolioGrid');
-    if (typeof PORTFOLIO !== 'undefined' && PORTFOLIO.length > 0) {
-        PORTFOLIO.forEach((item, i) => {
-            const card = document.createElement('div');
-            card.className = 'portfolio-card';
-            card.style.transitionDelay = `${i * 0.07}s`;
-
-            const thumb = item.image
-                ? `<div class="card-thumb"><img src="${item.image}" alt="${item.title}" loading="lazy"></div>`
-                : `<div class="card-thumb"><div class="card-thumb-empty">No image</div></div>`;
-
-            const link = item.url
-                ? `<a class="card-link" href="${item.url}" target="_blank" rel="noopener">${item.linkLabel || 'View →'}</a>`
-                : '';
-
-            card.innerHTML = `
-                ${thumb}
-                <div class="card-body">
-                    <div class="card-tag">${item.tag || ''}</div>
-                    <div class="card-title">${item.title}</div>
-                    <div class="card-desc">${item.desc || ''}</div>
-                    ${link}
-                </div>`;
-            grid.appendChild(card);
-        });
-
-        // Observe portfolio cards
-        const cardObs = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); } });
-        }, { threshold: 0.05 });
-        document.querySelectorAll('.portfolio-card').forEach(el => cardObs.observe(el));
-    } else {
-        grid.innerHTML = '<div style="padding:48px;font-family:var(--mono);font-size:0.78rem;color:var(--ink-faint);">content.js 에 항목을 추가하면 여기에 표시됩니다.</div>';
-    }
     // Scroll reveal sections
     const secObs = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); secObs.unobserve(e.target); } });
