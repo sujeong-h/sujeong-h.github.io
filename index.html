@@ -3,214 +3,775 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HSJ | Sujeong Hong</title>
+    <title>Sujeong Hong | 홍수정</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     <style>
-        /* Minimal Design System */
         :root {
-            --bg-color: #ffffff;
-            --text-primary: #111111;
-            --text-secondary: #444444;
-            --line-color: #000000;
+            --ink: #0d0d0d;
+            --ink-mid: #3a3a3a;
+            --ink-faint: #888;
+            --paper: #f9f7f2;
+            --paper-warm: #f0ece3;
+            --accent: #8b6c42;
+            --accent-light: #c4a882;
+            --line: rgba(13,13,13,0.12);
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --mono: 'DM Mono', monospace;
+            --sans: 'Pretendard', -apple-system, sans-serif;
         }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Pretendard', -apple-system, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            color: var(--text-primary);
-            background-color: var(--bg-color);
+            font-family: var(--sans);
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
+
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 100;
+        }
+
         a { text-decoration: none; color: inherit; }
-        
-        /* Layout */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 24px;
-        }
-        section { margin-bottom: 90px; }
 
-        /* Typography */
-        h1 {
-            font-size: 2.6rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin: 0 0 10px 0;
-        }
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-            margin-bottom: 40px;
-            display: block;
-        }
-        h2 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 2px solid var(--line-color);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-        p {
-            font-size: 1.05rem;
-            color: #333;
-            max-width: 700px;
-            margin-bottom: 20px;
-        }
-        
-        /* Lists */
-        .minimal-list { list-style: none; padding: 0; }
-        .minimal-list li { margin-bottom: 30px; }
-        .minimal-list strong {
-            display: block;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        .minimal-list .info { font-size: 1rem; color: #333; }
-        .minimal-list .meta {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 5px;
-            display: block;
-        }
-
-        /* Publication List Style */
-        .pub-item { margin-bottom: 24px; }
-        .pub-title { font-weight: 600; font-size: 1.05rem; display: block; margin-bottom: 4px; }
-        .pub-journal { font-size: 0.95rem; color: #555; font-style: normal; }
-
-        /* Navigation */
-        nav {
+        /* ── Navigation ── */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 50;
             display: flex;
-            justify-content: flex-end;
-            gap: 24px;
-            margin-bottom: 70px;
-            font-size: 0.95rem;
-            font-weight: 500;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 48px;
+            mix-blend-mode: multiply;
         }
-        nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
-        /* Footer */
-        footer {
-            border-top: 1px solid #eee;
-            padding-top: 40px;
-            font-size: 0.85rem;
-            color: #999;
-            text-align: center;
+        .nav-logo {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            color: var(--ink-mid);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            color: var(--ink-mid);
+            text-transform: uppercase;
+            font-weight: 300;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover { color: var(--ink); }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 48px 64px;
+            position: relative;
+        }
+
+        .hero-index {
+            position: absolute;
+            top: 50%;
+            right: 48px;
+            transform: translateY(-50%);
+            writing-mode: vertical-rl;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.15em;
+            color: var(--ink-faint);
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .hero-name {
+            font-family: var(--serif);
+            font-size: clamp(4.5rem, 11vw, 10rem);
+            font-weight: 300;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            overflow: hidden;
+        }
+
+        .hero-name span {
+            display: block;
+            transform: translateY(110%);
+            animation: riseUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-name span:nth-child(2) { animation-delay: 0.08s; }
+
+        .hero-meta {
+            margin-top: 36px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--line);
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.9s forwards;
+        }
+
+        .hero-role {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            color: var(--ink-mid);
+            font-weight: 300;
+            line-height: 1.6;
+            text-transform: uppercase;
+        }
+
+        .hero-tagline {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--ink-mid);
+            max-width: 360px;
+            text-align: right;
+            font-weight: 300;
+        }
+
+        /* ── Main Layout ── */
+        .main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 48px 140px;
+        }
+
+        /* ── Section ── */
+        .section {
+            padding: 96px 0;
+            border-top: 1px solid var(--line);
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 48px;
+            align-items: baseline;
+            margin-bottom: 52px;
+        }
+
+        .section-number {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            color: var(--ink-faint);
+            font-weight: 300;
+            text-transform: uppercase;
+            padding-top: 4px;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+        }
+
+        .section-body {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 48px;
+        }
+
+        .section-body > :first-child { grid-column: 2; }
+
+        /* ── About ── */
+        .about-text {
+            font-size: 1.12rem;
+            color: var(--ink-mid);
+            line-height: 1.85;
+            max-width: 640px;
+        }
+
+        .about-text + .about-text { margin-top: 20px; }
+
+        /* ── Education ── */
+        .edu-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--line);
+            align-items: start;
+        }
+
+        .edu-item:first-child { border-top: 1px solid var(--line); }
+
+        .edu-degree {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .edu-school {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--ink-mid);
+            font-weight: 300;
+            letter-spacing: 0.03em;
+        }
+
+        .edu-thesis {
+            font-size: 0.88rem;
+            color: var(--ink-faint);
+            font-style: italic;
+            margin-top: 8px;
+            font-family: var(--serif);
+        }
+
+        .edu-year {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--ink-faint);
+            font-weight: 300;
+            white-space: nowrap;
+            padding-top: 4px;
+        }
+
+        /* ── Publications ── */
+        .pub-list { width: 100%; }
+
+        .pub-item {
+            padding: 28px 0;
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 24px;
+            align-items: start;
+            cursor: default;
+            transition: background 0.2s;
+        }
+
+        .pub-item:first-child { border-top: 1px solid var(--line); }
+
+        .pub-num {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-weight: 300;
+            padding-top: 5px;
+            min-width: 28px;
+        }
+
+        .pub-title {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .pub-meta {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            color: var(--ink-faint);
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── Presentations ── */
+        .pres-item {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .pres-item:first-child { border-top: 1px solid var(--line); }
+
+        .pres-conf {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+
+        .pres-title {
+            font-size: 0.9rem;
+            color: var(--ink-mid);
+            font-style: italic;
+            font-family: var(--serif);
+        }
+
+        .pres-loc {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-weight: 300;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .teach-award {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 0 24px;
+            margin-bottom: 4px;
+        }
+
+        .award-label {
+            font-size: 0.78rem;
+            color: var(--accent);
+        }
+
+        .award-text {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--accent);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+        }
+
+        /* ── Teaching ── */
+        .teach-item {
+            padding: 22px 0;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 20px;
+        }
+
+        .teach-item:first-child { border-top: 1px solid var(--line); }
+
+        .teach-course {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--ink);
+        }
+
+        .teach-info {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--ink-faint);
+            font-weight: 300;
+            white-space: nowrap;
+        }
+
+        /* ── Contact ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .contact-item {
+            padding: 28px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .contact-item:nth-child(odd) {
+            padding-right: 48px;
+            border-right: 1px solid var(--line);
+        }
+
+        .contact-item:nth-child(even) {
+            padding-left: 48px;
+        }
+
+        .contact-item:first-child,
+        .contact-item:nth-child(2) { border-top: 1px solid var(--line); }
+
+        .contact-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .contact-value {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            color: var(--ink);
+        }
+
+        .contact-value a {
+            border-bottom: 1px solid var(--accent-light);
+            transition: border-color 0.25s, color 0.25s;
+        }
+
+        .contact-value a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ── Footer ── */
+        .footer {
+            border-top: 1px solid var(--line);
+            padding: 40px 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-name {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--ink-faint);
+            font-weight: 300;
+        }
+
+        .footer-copy {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--ink-faint);
+            font-weight: 300;
+        }
+
+        /* ── Animations ── */
+        @keyframes riseUp {
+            to { transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .nav { padding: 18px 24px; }
+            .hero { padding: 0 24px 48px; }
+            .hero-index { display: none; }
+            .main { padding: 0 24px 100px; }
+            .section-header, .section-body { grid-template-columns: 1fr; gap: 16px; }
+            .section-body > :first-child { grid-column: 1; }
+            .section-number { display: none; }
+            .hero-meta { flex-direction: column; align-items: flex-start; }
+            .hero-tagline { text-align: left; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-item:nth-child(odd) { padding-right: 0; border-right: none; }
+            .contact-item:nth-child(even) { padding-left: 0; border-top: none; }
+            .contact-item:nth-child(2) { border-top: none; }
+            .footer { flex-direction: column; gap: 8px; text-align: center; padding: 32px 24px; }
+            .nav-links { gap: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-logo { display: none; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <nav>
-        <a href="#about">About</a>
-        <a href="#publications">Publications</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#contact">Contact</a>
-    </nav>
+<!-- Navigation -->
+<nav class="nav">
+    <span class="nav-logo">HSJ — 홍수정</span>
+    <ul class="nav-links">
+        <li><a href="#publications">Research</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
-    <header id="about">
-        <h1>Sujeong Hong</h1>
-        <span class="subtitle">Assistant Professor, Mokwon University</span>
-        <p>
-            저는 행동 과학(Behavioral Science)과 데이터 기반 방법론을 융합하여 마케팅 문제를 해결하는 연구자입니다. 
-            성균관대학교에서 경영학 박사 학위를 취득하였으며, 현재 경험적 소비, 미니멀리즘, 친사회적 행동 등을 주제로 활발한 연구를 수행하고 있습니다.
-        </p>
-    </header>
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-index">Mokwon University — Daejeon, Korea</div>
+    <h1 class="hero-name" aria-label="Sujeong Hong">
+        <span>Sujeong</span>
+        <span>Hong</span>
+    </h1>
+    <div class="hero-meta">
+        <div class="hero-role">
+            Assistant Professor<br>
+            Marketing Big Data Department<br>
+            Mokwon University
+        </div>
+        <p class="hero-tagline">Ph.D. · Marketing · Sungkyunkwan University</p>
+    </div>
+</section>
 
-    <section>
-        <h2>Education</h2>
-        <ul class="minimal-list">
-            <li>
-                <strong>Ph.D. in Business Administration (Marketing)</strong>
-                <span class="info">Sungkyunkwan University, 2020</span>
-                <span class="meta">Dissertation: "The Effect of Uncertainty on Consumer Preference for Material and Experiential Purchases"</span>
-            </li>
-            <li>
-                <strong>B.A. in Business Administration & Social Welfare</strong>
-                <span class="info">Sungkyunkwan University, 2013</span>
-            </li>
-        </ul>
+<!-- Main Content -->
+<main class="main">
+
+    <!-- Education -->
+    <section class="section" data-observe>
+        <div class="section-header">
+            <span class="section-number">01 — Education</span>
+            <h2 class="section-title">Academic Training</h2>
+        </div>
+        <div class="section-body">
+            <div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">Ph.D. in Business Administration (Marketing)</div>
+                        <div class="edu-school">Sungkyunkwan University</div>
+                        <div class="edu-thesis">"The Effect of Uncertainty on Consumer Preference for Material and Experiential Purchases"</div>
+                    </div>
+                    <div class="edu-year">2020</div>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">B.A. in Business Administration & Social Welfare</div>
+                        <div class="edu-school">Sungkyunkwan University</div>
+                    </div>
+                    <div class="edu-year">2013</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="publications">
-        <h2>Selected Publications</h2>
-        <div class="pub-item">
-            <span class="pub-title">"The Effect of Meritocratic Belief on Charitable Behavior"</span>
-            <span class="pub-journal">Journal of Consumer Studies, 34(6), 165-176 (2023)</span>
+    <!-- Publications -->
+    <section class="section" id="publications" data-observe>
+        <div class="section-header">
+            <span class="section-number">02 — Publications</span>
+            <h2 class="section-title">Selected Works</h2>
         </div>
-        <div class="pub-item">
-            <span class="pub-title">"Against the Public or the Critic? The Impacts of Counterculturalism on Consumer Preferences"</span>
-            <span class="pub-journal">Journal of Consumption Culture, 26(4), 255-273 (With Kim, K.) (2023)</span>
-        </div>
-        <div class="pub-item">
-            <span class="pub-title">"Spillover Effect of Leadership Ethics on CSR Initiatives"</span>
-            <span class="pub-journal">Journal of Consumption Culture, 26(4), 205-220 (With Kwon, M.) (2023)</span>
-        </div>
-        <div class="pub-item">
-            <span class="pub-title">"The Effects of Minimalism Pursuit on Consumer Independence"</span>
-            <span class="pub-journal">Journal of Consumer Studies, 34(5), 67-85 (With Kwon, M.) (2023)</span>
-        </div>
-        <div class="pub-item">
-            <span class="pub-title">"AI vs. Humans: How Implicit Self-Theory Shapes Consumer Evaluations on Financial Investment Advice"</span>
-            <span class="pub-journal">Journal of Consumer Studies, 34(5), 143-156 (With Jeon, E.) (2023)</span>
+        <div class="section-body">
+            <div class="pub-list">
+                <div class="pub-item">
+                    <span class="pub-num">05</span>
+                    <div>
+                        <div class="pub-title">"The Effect of Meritocratic Belief on Charitable Behavior"</div>
+                        <div class="pub-meta">Journal of Consumer Studies · 34(6), 165–176 · 2023</div>
+                    </div>
+                </div>
+                <div class="pub-item">
+                    <span class="pub-num">04</span>
+                    <div>
+                        <div class="pub-title">"Against the Public or the Critic? The Impacts of Counterculturalism on Consumer Preferences"</div>
+                        <div class="pub-meta">Journal of Consumption Culture · 26(4), 255–273 · 2023 · with Kim, K.</div>
+                    </div>
+                </div>
+                <div class="pub-item">
+                    <span class="pub-num">03</span>
+                    <div>
+                        <div class="pub-title">"Spillover Effect of Leadership Ethics on CSR Initiatives"</div>
+                        <div class="pub-meta">Journal of Consumption Culture · 26(4), 205–220 · 2023 · with Kwon, M.</div>
+                    </div>
+                </div>
+                <div class="pub-item">
+                    <span class="pub-num">02</span>
+                    <div>
+                        <div class="pub-title">"The Effects of Minimalism Pursuit on Consumer Independence"</div>
+                        <div class="pub-meta">Journal of Consumer Studies · 34(5), 67–85 · 2023 · with Kwon, M.</div>
+                    </div>
+                </div>
+                <div class="pub-item">
+                    <span class="pub-num">01</span>
+                    <div>
+                        <div class="pub-title">"AI vs. Humans: How Implicit Self-Theory Shapes Consumer Evaluations on Financial Investment Advice"</div>
+                        <div class="pub-meta">Journal of Consumer Studies · 34(5), 143–156 · 2023 · with Jeon, E.</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section>
-        <h2>Selected Presentations</h2>
-        <ul class="minimal-list">
-            <li>
-                <strong>AMA Winter Academic Conference (2024)</strong>
-                <span class="info">"Expectations of Making a Difference for Earth" (St. Pete Beach, FL)</span>
-            </li>
-            <li>
-                <strong>AMA Summer Academic Conference (2023)</strong>
-                <span class="info">"A Hopeful Message Works for the Pessimist" (San Francisco, USA)</span>
-            </li>
-            <li>
-                <strong>Global Marketing Conference (2023)</strong>
-                <span class="info">"Effects of Residential Mobility on Trust in the Digital Consumption Contexts" (Seoul)</span>
-            </li>
-        </ul>
+    <!-- Presentations -->
+    <section class="section" data-observe>
+        <div class="section-header">
+            <span class="section-number">03 — Presentations</span>
+            <h2 class="section-title">Conference Activity</h2>
+        </div>
+        <div class="section-body">
+            <div>
+                <div class="pres-item">
+                    <div>
+                        <div class="pres-conf">AMA Winter Academic Conference 2024</div>
+                        <div class="pres-title">"Expectations of Making a Difference for Earth"</div>
+                    </div>
+                    <div class="pres-loc">St. Pete Beach, FL</div>
+                </div>
+                <div class="pres-item">
+                    <div>
+                        <div class="pres-conf">AMA Summer Academic Conference 2023</div>
+                        <div class="pres-title">"A Hopeful Message Works for the Pessimist"</div>
+                    </div>
+                    <div class="pres-loc">San Francisco, USA</div>
+                </div>
+                <div class="pres-item">
+                    <div>
+                        <div class="pres-conf">Global Marketing Conference 2023</div>
+                        <div class="pres-title">"Effects of Residential Mobility on Trust in the Digital Consumption Contexts"</div>
+                    </div>
+                    <div class="pres-loc">Seoul, Korea</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="teaching">
-        <h2>Teaching</h2>
-        <ul class="minimal-list">
-            <li>
-                <strong>Marketing Analytics</strong>
-                <span class="info">Sookmyung Women's University (Spring 2024)</span>
-            </li>
-            <li>
-                <strong>Marketing Strategy</strong>
-                <span class="info">Sungkyunkwan University (Fall 2023)</span>
-            </li>
-        </ul>
+    <!-- Teaching -->
+    <section class="section" id="teaching" data-observe>
+        <div class="section-header">
+            <span class="section-number">04 — Teaching</span>
+            <h2 class="section-title">Courses Taught</h2>
+        </div>
+        <div class="section-body">
+            <div>
+                <div class="teach-award">
+                    <span class="award-label">★</span>
+                    <span class="award-text">Teaching Excellence Award · Mokwon University</span>
+                </div>
+                <div class="teach-item">
+                    <span class="teach-course">마케팅빅데이터분석</span>
+                    <span class="teach-info">Mokwon University</span>
+                </div>
+                <div class="teach-item">
+                    <span class="teach-course">고객관계관리</span>
+                    <span class="teach-info">Mokwon University</span>
+                </div>
+                <div class="teach-item">
+                    <span class="teach-course">경영전략</span>
+                    <span class="teach-info">Mokwon University</span>
+                </div>
+                <div class="teach-item">
+                    <span class="teach-course">자료분석사례연구</span>
+                    <span class="teach-info">Mokwon University</span>
+                </div>
+                <div class="teach-item">
+                    <span class="teach-course">빅데이터마케팅실무</span>
+                    <span class="teach-info">Mokwon University</span>
+                </div>
+                <div class="teach-item">
+                    <span class="teach-course">홍보마케팅</span>
+                    <span class="teach-info">Mokwon University</span>
+                </div>
+                <div class="teach-item">
+                    <span class="teach-course">데이터품질</span>
+                    <span class="teach-info">Mokwon University</span>
+                </div>
+                <div class="teach-item">
+                    <span class="teach-course">Marketing Analytics</span>
+                    <span class="teach-info">Sookmyung Women's University — Spring 2024</span>
+                </div>
+                <div class="teach-item">
+                    <span class="teach-course">Marketing Strategy</span>
+                    <span class="teach-info">Sungkyunkwan University — Fall 2023</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <ul class="minimal-list">
-            <li>
-                <strong>Email</strong>
-                <a href="mailto:sujeongh@mokwon.ac.kr" style="border-bottom: 1px solid #000;">sujeongh@mokwon.ac.kr</a>
-            </li>
-            <li>
-                <strong>Office</strong>
-                <span class="info">Mokwon University, Daejeon, South Korea</span>
-            </li>
-        </ul>
+    <!-- Contact -->
+    <section class="section" id="contact" data-observe>
+        <div class="section-header">
+            <span class="section-number">05 — Contact</span>
+            <h2 class="section-title">Get in Touch</h2>
+        </div>
+        <div class="section-body">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:sujeongh@mokwon.ac.kr">sujeongh@mokwon.ac.kr</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Office</div>
+                    <div class="contact-value">Mokwon University<br>Daejeon, South Korea</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        &copy; 2025 Sujeong Hong. All rights reserved.
-    </footer>
-</div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <span class="footer-name">Sujeong Hong · 홍수정</span>
+    <span class="footer-copy">© 2025 All rights reserved</span>
+</footer>
+
+<script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('[data-observe]').forEach(el => observer.observe(el));
+
+    // Staggered pub items reveal
+    document.querySelectorAll('.pub-item, .pres-item, .teach-item, .edu-item').forEach((item, i) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(16px)';
+        item.style.transition = `opacity 0.5s ease ${i * 0.06}s, transform 0.5s ease ${i * 0.06}s`;
+    });
+
+    const itemObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.pub-item, .pres-item, .teach-item, .edu-item').forEach(el => itemObserver.observe(el));
+
+    // Nav visibility on scroll
+    const nav = document.querySelector('.nav');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const current = window.scrollY;
+        if (current < 80) {
+            nav.style.opacity = '1';
+        } else if (current > lastScroll) {
+            nav.style.opacity = '0';
+        } else {
+            nav.style.opacity = '1';
+        }
+        lastScroll = current;
+        nav.style.transition = 'opacity 0.3s ease';
+    }, { passive: true });
+</script>
 
 </body>
 </html>
